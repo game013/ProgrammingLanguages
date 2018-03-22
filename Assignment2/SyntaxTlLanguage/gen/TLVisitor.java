@@ -34,17 +34,23 @@ public interface TLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitImport_block_2(TLParser.Import_block_2Context ctx);
 	/**
-	 * Visit a parse tree produced by {@link TLParser#func}.
+	 * Visit a parse tree produced by {@link TLParser#empty_params}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunc(TLParser.FuncContext ctx);
+	T visitEmpty_params(TLParser.Empty_paramsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TLParser#params}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitParams(TLParser.ParamsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TLParser#func_def}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunc_def(TLParser.Func_defContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TLParser#empty_main}.
 	 * @param ctx the parse tree

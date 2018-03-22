@@ -58,14 +58,16 @@ WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 BL : [ \r\n]+;
 
 // Syntactic rules
-all: import_block* func* empty_main;
+all: import_block* func_def* empty_main;
 
 import_block: import_block_1 | import_block_2;
 import_block_1: IMPORTAR ' ' ID (TOKEN_POINT ID)*;
 import_block_2: DESDE ' ' ID (TOKEN_POINT ID)* IMPORTAR ID;
 
-func: FUNCION ' ' ID TOKEN_PAR_IZQ params TOKEN_PAR_DER empty_main RETORNO ' ' expr END ' ' FUNCION;
-params: ID (TOKEN_COMA ID)* | ;
+empty_params: params | ;
+params: ID (TOKEN_COMA ID)*;
+
+func_def: FUNCION ' ' ID TOKEN_PAR_IZQ empty_params TOKEN_PAR_DER empty_main RETORNO ' ' expr END ' ' FUNCION;
 empty_main: main | ;
 main: cond | expr (expr)*;
 cond: cond_header elseif* else_block?;

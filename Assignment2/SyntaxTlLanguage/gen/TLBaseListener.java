@@ -63,13 +63,13 @@ public class TLBaseListener implements TLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunc(TLParser.FuncContext ctx) { }
+	@Override public void enterEmpty_params(TLParser.Empty_paramsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunc(TLParser.FuncContext ctx) { }
+	@Override public void exitEmpty_params(TLParser.Empty_paramsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -82,6 +82,18 @@ public class TLBaseListener implements TLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitParams(TLParser.ParamsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunc_def(TLParser.Func_defContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunc_def(TLParser.Func_defContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

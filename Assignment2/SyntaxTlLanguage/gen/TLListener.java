@@ -47,15 +47,15 @@ public interface TLListener extends ParseTreeListener {
 	 */
 	void exitImport_block_2(TLParser.Import_block_2Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link TLParser#func}.
+	 * Enter a parse tree produced by {@link TLParser#empty_params}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunc(TLParser.FuncContext ctx);
+	void enterEmpty_params(TLParser.Empty_paramsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TLParser#func}.
+	 * Exit a parse tree produced by {@link TLParser#empty_params}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunc(TLParser.FuncContext ctx);
+	void exitEmpty_params(TLParser.Empty_paramsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TLParser#params}.
 	 * @param ctx the parse tree
@@ -66,6 +66,16 @@ public interface TLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitParams(TLParser.ParamsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TLParser#func_def}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunc_def(TLParser.Func_defContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TLParser#func_def}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunc_def(TLParser.Func_defContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TLParser#empty_main}.
 	 * @param ctx the parse tree
