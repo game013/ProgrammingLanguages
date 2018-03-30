@@ -54,28 +54,51 @@ ID: [a-zA-Z_][a-zA-Z0-9_]*;
 TOKEN_INTEGER: [0-9]+;
 TOKEN_FLOAT: [0-9]+'.'[0-9]+;
 
-WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
-BL : [ \r\n]+;
+WS : [ \t\r] -> skip ; // skip spaces, tabs, newlines
+BL : [\n];
 
 // Syntactic rules
-all: import_block* func_def* empty_main;
+all: (statement | BL)* EOF;
 
-import_block: import_block_1 | import_block_2;
-import_block_1: IMPORTAR ' ' ID (TOKEN_POINT ID)*;
-import_block_2: DESDE ' ' ID (TOKEN_POINT ID)* IMPORTAR ID;
+statement: simple_statement | composed_statement;
 
-empty_params: params | ;
-params: ID (TOKEN_COMA ID)*;
+simple_statement: import_block | assignment | log_invoke | method_invoke;
+composed_statement: func_def | if_block | while_block | for_block;
 
-func_def: FUNCION ' ' ID TOKEN_PAR_IZQ empty_params TOKEN_PAR_DER empty_main RETORNO ' ' expr END ' ' FUNCION;
-empty_main: main | ;
-main: cond | expr (expr)*;
-cond: cond_header elseif* else_block?;
-cond_header: ((if_header TOKEN_LLAVE_IZQ empty_main TOKEN_LLAVE_DER) | (if_header main));
-if_header: IF WS* TOKEN_PAR_IZQ bool TOKEN_PAR_DER;
-elseif: ELSE ' ' cond_header;
-else_block: ELSE ((TOKEN_LLAVE_IZQ empty_main TOKEN_LLAVE_DER) | (main));
-bool: (binary_bool | unary_bool) ((TOKEN_AND | TOKEN_OR) (binary_bool | unary_bool))*;
-binary_bool: expr (TOKEN_MENOR | TOKEN_MAYOR | TOKEN_MENOR_IGUAL | TOKEN_MAYOR_IGUAL | TOKEN_DIFF_NUM | TOKEN_IGUAL_NUM) expr;
-unary_bool: TOKEN_NOT ID | ID;
-expr: ID (WS)*;
+import_block: regular_import | from_import;
+regular_import: IMPORTAR ID (TOKEN_POINT ID)*;
+from_import: DESDE ID (TOKEN_POINT ID)* IMPORTAR ID;
+
+assignment: variable TOKEN_ASSIGN expr;
+log_invoke: (LOG | LEER) TOKEN_PAR_IZQ expr TOKEN_PAR_DER;
+method_invoke: ID TOKEN_PAR_IZQ (expr (TOKEN_COMA expr)*)? TOKEN_PAR_DER;
+
+params: param (TOKEN_COMA param)*;
+param: ID;
+func_def: FUNCION ID TOKEN_PAR_IZQ params? TOKEN_PAR_DER (statement | BL)* RETORNO expr BL END;
+if_header: IF TOKEN_PAR_IZQ bool TOKEN_PAR_DER BL?;
+if_block: if_header block (elif_header block)* (ELSE block)?;
+elif_header: ELSE if_header;
+
+while_block: WHILE TOKEN_PAR_IZQ bool TOKEN_PAR_DER BL? block;
+for_block: FOR ID IN expr BL? block;
+
+block: TOKEN_LLAVE_IZQ (statement | BL)* TOKEN_LLAVE_DER
+    | statement BL;
+
+bool: (binary_bool | unary_bool) ((TOKEN_AND | TOKEN_OR) bool)?;
+binary_bool: simple_expr (TOKEN_MENOR | TOKEN_MAYOR | TOKEN_MENOR_IGUAL | TOKEN_MAYOR_IGUAL | TOKEN_DIFF_NUM | TOKEN_IGUAL_NUM) simple_expr;
+unary_bool: TOKEN_NOT simple_expr | simple_expr;
+simple_expr: ID
+    | TOKEN_STRING
+    | (TRUE | FALSE)
+    | (TOKEN_INTEGER | TOKEN_FLOAT)
+    | array_def;
+expr: bool
+    | binary_oper
+    | simple_expr
+    | variable;
+
+variable: ID (TOKEN_POINT ID)* (TOKEN_COR_IZQ expr TOKEN_COR_DER)?;
+array_def: TOKEN_COR_IZQ (expr (TOKEN_COMA expr)*)? TOKEN_COR_DER;
+binary_oper: simple_expr (TOKEN_MAS | TOKEN_MENOS | TOKEN_MUL | TOKEN_DIV | TOKEN_POT | TOKEN_MOD) expr;

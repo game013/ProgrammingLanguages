@@ -17,6 +17,36 @@ public interface TLListener extends ParseTreeListener {
 	 */
 	void exitAll(TLParser.AllContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TLParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterStatement(TLParser.StatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TLParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitStatement(TLParser.StatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TLParser#simple_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterSimple_statement(TLParser.Simple_statementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TLParser#simple_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitSimple_statement(TLParser.Simple_statementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TLParser#composed_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterComposed_statement(TLParser.Composed_statementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TLParser#composed_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitComposed_statement(TLParser.Composed_statementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TLParser#import_block}.
 	 * @param ctx the parse tree
 	 */
@@ -27,35 +57,55 @@ public interface TLListener extends ParseTreeListener {
 	 */
 	void exitImport_block(TLParser.Import_blockContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TLParser#import_block_1}.
+	 * Enter a parse tree produced by {@link TLParser#regular_import}.
 	 * @param ctx the parse tree
 	 */
-	void enterImport_block_1(TLParser.Import_block_1Context ctx);
+	void enterRegular_import(TLParser.Regular_importContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TLParser#import_block_1}.
+	 * Exit a parse tree produced by {@link TLParser#regular_import}.
 	 * @param ctx the parse tree
 	 */
-	void exitImport_block_1(TLParser.Import_block_1Context ctx);
+	void exitRegular_import(TLParser.Regular_importContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TLParser#import_block_2}.
+	 * Enter a parse tree produced by {@link TLParser#from_import}.
 	 * @param ctx the parse tree
 	 */
-	void enterImport_block_2(TLParser.Import_block_2Context ctx);
+	void enterFrom_import(TLParser.From_importContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TLParser#import_block_2}.
+	 * Exit a parse tree produced by {@link TLParser#from_import}.
 	 * @param ctx the parse tree
 	 */
-	void exitImport_block_2(TLParser.Import_block_2Context ctx);
+	void exitFrom_import(TLParser.From_importContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TLParser#empty_params}.
+	 * Enter a parse tree produced by {@link TLParser#assignment}.
 	 * @param ctx the parse tree
 	 */
-	void enterEmpty_params(TLParser.Empty_paramsContext ctx);
+	void enterAssignment(TLParser.AssignmentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TLParser#empty_params}.
+	 * Exit a parse tree produced by {@link TLParser#assignment}.
 	 * @param ctx the parse tree
 	 */
-	void exitEmpty_params(TLParser.Empty_paramsContext ctx);
+	void exitAssignment(TLParser.AssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TLParser#log_invoke}.
+	 * @param ctx the parse tree
+	 */
+	void enterLog_invoke(TLParser.Log_invokeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TLParser#log_invoke}.
+	 * @param ctx the parse tree
+	 */
+	void exitLog_invoke(TLParser.Log_invokeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TLParser#method_invoke}.
+	 * @param ctx the parse tree
+	 */
+	void enterMethod_invoke(TLParser.Method_invokeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TLParser#method_invoke}.
+	 * @param ctx the parse tree
+	 */
+	void exitMethod_invoke(TLParser.Method_invokeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TLParser#params}.
 	 * @param ctx the parse tree
@@ -67,6 +117,16 @@ public interface TLListener extends ParseTreeListener {
 	 */
 	void exitParams(TLParser.ParamsContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TLParser#param}.
+	 * @param ctx the parse tree
+	 */
+	void enterParam(TLParser.ParamContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TLParser#param}.
+	 * @param ctx the parse tree
+	 */
+	void exitParam(TLParser.ParamContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TLParser#func_def}.
 	 * @param ctx the parse tree
 	 */
@@ -76,46 +136,6 @@ public interface TLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunc_def(TLParser.Func_defContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link TLParser#empty_main}.
-	 * @param ctx the parse tree
-	 */
-	void enterEmpty_main(TLParser.Empty_mainContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TLParser#empty_main}.
-	 * @param ctx the parse tree
-	 */
-	void exitEmpty_main(TLParser.Empty_mainContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link TLParser#main}.
-	 * @param ctx the parse tree
-	 */
-	void enterMain(TLParser.MainContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TLParser#main}.
-	 * @param ctx the parse tree
-	 */
-	void exitMain(TLParser.MainContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link TLParser#cond}.
-	 * @param ctx the parse tree
-	 */
-	void enterCond(TLParser.CondContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TLParser#cond}.
-	 * @param ctx the parse tree
-	 */
-	void exitCond(TLParser.CondContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link TLParser#cond_header}.
-	 * @param ctx the parse tree
-	 */
-	void enterCond_header(TLParser.Cond_headerContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TLParser#cond_header}.
-	 * @param ctx the parse tree
-	 */
-	void exitCond_header(TLParser.Cond_headerContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TLParser#if_header}.
 	 * @param ctx the parse tree
@@ -127,25 +147,55 @@ public interface TLListener extends ParseTreeListener {
 	 */
 	void exitIf_header(TLParser.If_headerContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TLParser#elseif}.
+	 * Enter a parse tree produced by {@link TLParser#if_block}.
 	 * @param ctx the parse tree
 	 */
-	void enterElseif(TLParser.ElseifContext ctx);
+	void enterIf_block(TLParser.If_blockContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TLParser#elseif}.
+	 * Exit a parse tree produced by {@link TLParser#if_block}.
 	 * @param ctx the parse tree
 	 */
-	void exitElseif(TLParser.ElseifContext ctx);
+	void exitIf_block(TLParser.If_blockContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TLParser#else_block}.
+	 * Enter a parse tree produced by {@link TLParser#elif_header}.
 	 * @param ctx the parse tree
 	 */
-	void enterElse_block(TLParser.Else_blockContext ctx);
+	void enterElif_header(TLParser.Elif_headerContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TLParser#else_block}.
+	 * Exit a parse tree produced by {@link TLParser#elif_header}.
 	 * @param ctx the parse tree
 	 */
-	void exitElse_block(TLParser.Else_blockContext ctx);
+	void exitElif_header(TLParser.Elif_headerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TLParser#while_block}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhile_block(TLParser.While_blockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TLParser#while_block}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhile_block(TLParser.While_blockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TLParser#for_block}.
+	 * @param ctx the parse tree
+	 */
+	void enterFor_block(TLParser.For_blockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TLParser#for_block}.
+	 * @param ctx the parse tree
+	 */
+	void exitFor_block(TLParser.For_blockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TLParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlock(TLParser.BlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TLParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlock(TLParser.BlockContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TLParser#bool}.
 	 * @param ctx the parse tree
@@ -177,6 +227,16 @@ public interface TLListener extends ParseTreeListener {
 	 */
 	void exitUnary_bool(TLParser.Unary_boolContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TLParser#simple_expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterSimple_expr(TLParser.Simple_exprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TLParser#simple_expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitSimple_expr(TLParser.Simple_exprContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TLParser#expr}.
 	 * @param ctx the parse tree
 	 */
@@ -186,4 +246,34 @@ public interface TLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpr(TLParser.ExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TLParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariable(TLParser.VariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TLParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariable(TLParser.VariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TLParser#array_def}.
+	 * @param ctx the parse tree
+	 */
+	void enterArray_def(TLParser.Array_defContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TLParser#array_def}.
+	 * @param ctx the parse tree
+	 */
+	void exitArray_def(TLParser.Array_defContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TLParser#binary_oper}.
+	 * @param ctx the parse tree
+	 */
+	void enterBinary_oper(TLParser.Binary_operContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TLParser#binary_oper}.
+	 * @param ctx the parse tree
+	 */
+	void exitBinary_oper(TLParser.Binary_operContext ctx);
 }
